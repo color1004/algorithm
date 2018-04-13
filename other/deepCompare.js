@@ -1,3 +1,8 @@
+//简单版
+// var eq1 = Object.toJSON(user1) == Object.toJSON(user2);
+var eq1 = JSON.stringify(obj1) === JSON.stringify(obj2)  //obj顺序不同就 比较结果就是失败
+
+//
 function deepCompare(x, y) {
   var i, l, leftChain, rightChain;
 
