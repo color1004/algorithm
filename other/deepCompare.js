@@ -116,3 +116,5 @@ function deepCompare(x, y) {
 
   return true;
 }
+
+//https://segmentfault.com/q/1010000010893484 另一种
