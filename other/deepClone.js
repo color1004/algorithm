@@ -34,7 +34,7 @@ function checkType(obj) {
   var type
   if (obj === null || (typeof obj !== "object" && typeof obj !== 'function')) { 
     return 'other';   // null 和 普通string boolean number 都处理为 other
-  } else if(Array.isArray(obj)) {  //array也是object，需要在判断object前面
+  } else if(Array.isArray(obj)) {  //obj instanceof Array//array也是object，需要在判断object前面
     return 'array';
   } else if(typeof obj == 'function') {
     return 'function';
