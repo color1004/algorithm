@@ -1,6 +1,47 @@
-// 全排列的优化及变形
+// 全排列的优化及变形拓展
 function nextPerm(str) {
+    var arr = str.split("");
+    arr.sort();
+    console.log(arr);
+    while(fn(arr)) {
+        console.log(arr);
+    }
+    function fn(arr) {
+        var pos1 = 0,
+            pos2 = 0,
+            len = arr.length
+            flag = false;
+        for(var i=len-2; i>=0; i--) {
+            if(arr[i]<arr[i+1]) {
+                pos1 = i;
+                flag = true;
+                break;
+            }
+        }
+        if(!flag) return false;
+        for(var i=len-1; i>=0; i--) {
+            if(arr[i]>arr[pos1]) {
+                pos2 = i;
+                break;
+            }
+        }
+        swap(pos1, pos2, arr);
+        var p = pos1+1, q = len-1;
+        while(p<q) {
+            swap(p, q, arr);
+            p++;
+            q--;
+        }
+        return true;
+    }
+    function swap(i, j, arr) {
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        return arr;
+    }
 }
+nextPerm('2341');
 
 
 // ann全排列结果 即 n的阶乘
@@ -78,5 +119,25 @@ function getStrC(n,m,t) { // n个 a  m个  z  求第t个
     return ans;
 }
 getStrC(3,2,3);
+
+// 获取 某个字符串在 字典序中排第几个
+function getNum(str) {
+    var arr = str.split(""); // 3267514
+    var sortArr = str.split("").sort();
+    var ans = 0;
+    var index = 0;
+    var len = arr.length;
+    var f = ANN(len);
+    for(var i=0; i<len-1; i++) {
+        index = sortArr.indexOf(arr[i]);
+        console.log(index, sortArr);
+        sortArr.splice(index, 1);
+        ans = ans + (index * f[len-i-1]);
+        console.log(ans);
+    }
+    return ans;
+}
+getNum('1243'); // 1 1234 0
+getNum('3267514'); 1654
 
 // http://www.cnblogs.com/ECJTUACM-873284962/p/6390591.html
